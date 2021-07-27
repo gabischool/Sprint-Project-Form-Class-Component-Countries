@@ -1,18 +1,84 @@
-import React from 'react';
+import React,{useState} from 'react';
+import axios from "axios";
 
-function Form() {
+function Form(props) {
 
-  // 1. Set up state for form
+  const  iniTialState = {
+    id:0,
+    population: "",
+    name: "",
+    land_area: "",
+          
+  };
 
-  // 2. Create "handleChange" function to handle form changes and add changes to above state
+     
+    const [ formList, setFormLIst] = useState(iniTialState);
+    
 
-  // 3. Create "handleSubmit" function to send data to http://localhost:3333/countries using POST request.
-        // Make sure to update your countries list to show the recently added country.
+  const handleChange = (event) => {
+    let newInput = {...formList, [event.target.name]: event.target.value }
+      setFormLIst(newInput)
+  }
+  
+    const handleSubmit = (event) => {
+      event.preventDefault()
+                    
+     axios.post("http://localhost:3333/countries", formList)
+      .then((res) => {
 
-    return (
+        
+        props.fetchData()  
+          
+
+      })
+      .catch((err) => {
+          console.log(err)
+      })}
+
+   return (
       <div>
-      {/* Build your form here */}
-      </div>
+        
+        <form onSubmit={handleSubmit} >
+
+        <div>
+         <label htmlFor="name">
+        <input 
+         type="text"
+         name="name"
+         id=""
+         value={formList.name}
+        onChange={handleChange}
+        />
+        </label>
+        </div>
+
+         <div>
+        <label htmlFor="population">
+        <input 
+         type="text"
+         name="population"
+         id=""
+         value={formList.population}
+        onChange={handleChange}
+        />
+        </label>
+        </div>
+
+         <div>
+        <label htmlFor="land_area">
+        <input 
+         type="text"
+         name="land_area"
+         id=""
+         value={formList.land_area}
+        onChange={handleChange}
+        />
+        </label>
+        </div>
+          <button>Add here </button>
+        </form>
+        </div>
+       
     );
 
 }

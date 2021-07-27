@@ -1,22 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
+import CountryCard from './CountryCard';
+import { Row } from 'reactstrap';
 
-// Import Components here
+ function CountriesList(props){
 
-class CountriesList extends Component {
+  // console.log(props)
 
 
-
-  render() {
+  
     return (
-      <div className="Countries">
-        <h1>List of All Countries</h1>
-        <ul>
-         {/* Loop through all countries and send them to 'CountryCard' to display them */}
-        </ul>
-      </div>
+      <Row className="Countries">
+        {props.countries.map((country) =>
+           
+            < CountryCard  countries={country}/>
+        
+          
+          )}
+        
+      </Row>
     );
   }
-}
 
 
 export default CountriesList;
