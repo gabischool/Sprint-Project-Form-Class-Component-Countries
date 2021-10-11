@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 // Import Components here
 import CountriesList from './components/CountriesList';
-import CountryCard from './components/CountryCard'
+// import CountryCard from './components/CountryCard'
 import Form from './components/Form';
 import axios from 'axios';
 import './App.css';
@@ -23,7 +23,7 @@ class App extends Component {
     axios.get("http://localhost:3333/countries")
     .then(res => {
      this.setState({
-       userInfo: [res.data]
+      countries: [res.data]
      })
      
     })
@@ -39,6 +39,7 @@ class App extends Component {
         <div>Add your components here</div>
         <div>Have fun!</div> */}
         <div className="div1">
+          <CountriesList countries ={this.state.countries} />
           <Form />
         </div>
       </div>
