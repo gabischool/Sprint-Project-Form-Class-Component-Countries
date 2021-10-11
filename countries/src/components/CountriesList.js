@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 class CountriesList extends Component {
 
 
-
   render() {
     return (
       <div className="Countries">
